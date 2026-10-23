@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>IIT KGP Open World — Authentic Bauhaus Architecture &amp; 3D Orbit Camera</title>
+  <link rel="stylesheet" href="./css/style.css" />
+
+  <!-- Pin Three.js strictly to 0.160.0 via jsDelivr CDN Import Map -->
+  <script type="importmap">
+  {
+    "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+    }
+  }
+  </script>
+</head>
+<body>
+  <!-- WebGL2 Missing Fallback Banner -->
+  <div id="webgl-error" class="hidden" role="alert">
+    <div class="error-card">
+      <h1>WebGL2 Not Supported</h1>
+      <p>
+        IIT KGP Open World requires a browser and graphics card that support <strong>WebGL2</strong>.
+        Please enable hardware acceleration in Chrome, Edge, or Firefox (latest two versions).
+      </p>
+    </div>
+  </div>
+
+  <!-- Loading Overlay -->
+  <div id="loading-screen">
+    <div class="loading-box">
+      <h1>IIT KGP OPEN WORLD</h1>
+      <p class="subtitle">3D Orbit Camera &bull; Photo-Accurate Main Building &bull; Sculpted Humans</p>
+      <div class="progress-track">
+        <div id="loading-bar" class="progress-fill" style="width: 15%;"></div>
+      </div>
+      <p id="loading-status">Initializing physics engine &amp; Werner Moser Bauhaus architecture...</p>
+    </div>
+  </div>
+
+  <!-- Main 3D Viewport Container -->
+  <div id="viewport-container">
+    <canvas id="game-canvas"></canvas>
+  </div>
+
+  <!-- HUD Layer -->
+  <div id="hud-layer" aria-live="polite">
+    <!-- Top Right Status: Clock, Weather, Stamina, Active Objective -->
+    <div id="hud-top-right">
+      <div class="status-row">
+        <span id="hud-clock" class="clock-badge">08:00 AM</span>
+        <span id="hud-weather" class="weather-badge" title="Current Weather">Clear Sky</span>
+        <span id="hud-mode" class="mode-badge">Walking</span>
+      </div>
+      <div class="stamina-container" title="Stamina">
+        <div id="hud-stamina-bar" class="stamina-fill"></div>
+      </div>
+      <div id="hud-objective" class="objective-box">
+        <div class="objective-header">CURRENT OBJECTIVE</div>
+        <div id="hud-objective-text">Visit the Main Building Clock Tower Plaza</div>
+        <div id="hud-objective-dist" class="objective-dist">95 m</div>
+      </div>
+    </div>
+
+    <!-- Top Left Debug Overlay (Toggled with F3) -->
+    <div id="debug-overlay" class="hidden">
+      <div class="debug-title">F3 PROFILER (3D CAMERA + BAUHAUS KGP)</div>
+      <div id="debug-fps">FPS: --</div>
+      <div id="debug-draws">Draw Calls: --</div>
+      <div id="debug-tris">Triangles: --</div>
+      <div id="debug-colliders">Active Solid Colliders: --</div>
+      <div id="debug-coords">Local Pos: -- | Lat/Lng: --</div>
+    </div>
+
+    <!-- Bottom Left Rotating Radar Minimap -->
+    <div id="minimap-wrapper">
+      <canvas id="minimap-canvas" width="220" height="220"></canvas>
+      <div class="minimap-controls">
+        <span id="minimap-location-label">Scholar's Avenue</span>
+        <span class="minimap-hint">[Mouse] 360° Look &bull; [Space] Jump &bull; [B] Cycle &bull; [E] Talk &bull; [V] View</span>
+      </div>
+    </div>
+
+    <!-- Center Interaction Prompt & Subtitles -->
+    <div id="interaction-prompt" class="hidden">Press [E] to Talk</div>
+    <div id="subtitle-box" class="hidden">
+      <span id="subtitle-speaker" class="speaker-tag"></span>
+      <span id="subtitle-text"></span>
+    </div>
+
+    <!-- Toast Notifications -->
+    <div id="toast-container"></div>
+
+    <!-- Touch Controls Overlay (Shown automatically on touch devices) -->
+    <div id="touch-controls" class="hidden">
+      <div id="touch-joystick-zone"><div id="touch-joystick-knob"></div></div>
+      <div id="touch-look-zone"></div>
+      <div class="touch-buttons">
+        <button id="btn-touch-sprint" type="button">RUN</button>
+        <button id="btn-touch-jump" type="button">JUMP</button>
+        <button id="btn-touch-bike" type="button">BIKE</button>
+        <button id="btn-touch-interact" type="button">ACT</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pause & Settings Modal (Esc) -->
+  <div id="pause-modal" class="hidden" role="dialog" aria-modal="true" aria-labelledby="pause-title">
+    <div class="modal-card">
+      <h2 id="pause-title">CAMPUS JOURNAL &amp; APPEARANCE</h2>
+      <p class="modal-subtitle">Press <strong>[Esc]</strong> or click Resume to return to campus</p>
+      <div class="settings-grid">
+        <label>
+          Player Outfit Style
+          <select id="setting-outfit">
+            <option value="hostel_tee">KGP Hostel Tee &amp; Jeans</option>
+            <option value="kurta">Festive Kurta &amp; Denim</option>
+            <option value="formal">Department Placement Formal</option>
+          </select>
+        </label>
+        <label>
+          Subtitle Language
+          <select id="setting-lang">
+            <option value="en">English</option>
+            <option value="hi">हिन्दी (Hindi)</option>
+            <option value="bn">বাংলা (Bengali)</option>
+          </select>
+        </label>
+        <label>
+          Time Scale (1 Real Sec = X Game Secs)
+          <select id="setting-timescale">
+            <option value="30">30x (Relaxed)</option>
+            <option value="60" selected>60x (Standard — 1 min = 1 hr)</option>
+            <option value="180">180x (Fast Cycle)</option>
+          </select>
+        </label>
+        <label>
+          Weather Override
+          <select id="setting-weather">
+            <option value="CLEAR">Sunny / Clear</option>
+            <option value="MONSOON">Kharagpur Monsoon Rain</option>
+            <option value="FOG">Winter Morning Fog</option>
+          </select>
+        </label>
+      </div>
+      <div class="credits-box">
+        <strong>Geographic Data Credit:</strong> Map layout and building footprints derived from
+        &copy; <a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener">OpenStreetMap contributors</a> (ODbL).
+      </div>
+      <div class="modal-actions">
+        <button id="btn-resume" type="button" class="primary-btn">Resume Exploration</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>

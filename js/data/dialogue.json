@@ -1,0 +1,20 @@
+{
+  "en": {
+    "student": "Heading to the 9 AM lecture before attendance closes!",
+    "professor": "Good morning! Remember to submit your lab records by Friday.",
+    "guard": "Keep your institute ID card handy near the Main Building plaza.",
+    "vendor": "Hot ginger chai and samosa ready at Tikka! Take a quick break."
+  },
+  "hi": {
+    "student": "सुबह 9 बजे की क्लास के लिए जल्दी जा रहा हूँ!",
+    "professor": "सुप्रभात! शुक्रवार तक अपनी लैब रिपोर्ट जमा करना न भूलें।",
+    "guard": "मुख्य भवन के पास अपना संस्थान पहचान पत्र साथ रखें।",
+    "vendor": "गरमा-गरम अदरक वाली चाय और समोसा तैयार है!"
+  },
+  "bn": {
+    "student": "সকাল ৯টার ক্লাসের জন্য তাড়াতাড়ি যাচ্ছি!",
+    "professor": "সুপ্রভাত! শুক্রবারের মধ্যে ল্যাব রিপোর্ট জমা দিতে ভুলো না।",
+    "guard": "মেইন বিল্ডিং চত্বরে নিজের আইডি কার্ড সাথে রাখুন।",
+    "vendor": "গরম আদা চা আর সিঙাড়া তৈরি! একটু জিরিয়ে নিন।"
+  }
+}

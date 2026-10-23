@@ -1,0 +1,29 @@
+{
+  "anchor": {
+    "name": "IIT Kharagpur Main Building Plaza",
+    "lat": 22.3190,
+    "lng": 87.3091
+  },
+  "attribution": "© OpenStreetMap contributors (ODbL)",
+  "landmarks": [
+    { "id": "main_building", "name": "Main Building (Werner Moser 1951)", "category": "academic", "x": 0, "z": 0, "w": 118, "d": 42, "h": 22 },
+    { "id": "central_library", "name": "Vikram Sarabhai Central Library", "category": "library", "x": 78, "z": -22, "w": 50, "d": 36, "h": 17 },
+    { "id": "cse_dept", "name": "Takshashila & CSE Department", "category": "academic", "x": 105, "z": -95, "w": 58, "d": 38, "h": 17 },
+    { "id": "vikramshila", "name": "Vikramshila & Kalidas Auditorium", "category": "auditorium", "x": 125, "z": 68, "w": 68, "d": 42, "h": 16 },
+    { "id": "vgsom", "name": "Vinod Gupta School of Management (VGSoM)", "category": "academic", "x": 225, "z": -120, "w": 56, "d": 38, "h": 15 },
+    { "id": "nalanda", "name": "Nalanda Classroom Complex (Massive 4-Block Hub)", "category": "academic", "x": 320, "z": 10, "w": 176, "d": 132, "h": 18 },
+    { "id": "tikka_stall", "name": "Tikka / Scholar's Ave Chai Tapri", "category": "canteen", "x": -38, "z": 72, "w": 18, "d": 14, "h": 5 },
+    { "id": "rp_hall", "name": "Rajendra Prasad (RP) Hall", "category": "hostel", "x": -105, "z": 105, "w": 66, "d": 56, "h": 13 },
+    { "id": "rk_hall", "name": "Radhakrishnan (RK) Hall", "category": "hostel", "x": -105, "z": 195, "w": 66, "d": 56, "h": 13 },
+    { "id": "patel_hall", "name": "Patel Hall of Residence (PAN Loop)", "category": "hostel", "x": -235, "z": 30, "w": 68, "d": 58, "h": 13 },
+    { "id": "azad_hall", "name": "Azad Hall of Residence (PAN Loop)", "category": "hostel", "x": -235, "z: 125, "w": 68, "d": 58, "h": 13 },
+    { "id": "nehru_hall", "name": "Nehru Hall of Residence (PAN Loop)", "category": "hostel", "x": -235, "z": 220, "w": 68, "d": 58, "h": 13 },
+    { "id": "mmm_hall", "name": "Pandit Madan Mohan Malaviya (MMM) Hall", "category": "hostel", "x": -375, "z": 95, "w": 108, "d": 86, "h": 18 },
+    { "id": "lbs_hall", "name": "Lal Bahadur Shastri (LBS) Mega Hall", "category": "hostel", "x": -375, "z": -45, "w": 112, "d": 88, "h": 22 },
+    { "id": "gymkhana", "name": "Technology Students' Gymkhana & Lake", "category": "sports", "x": 88, "z": 168, "w": 76, "d": 48, "h": 12 },
+    { "id": "jnan_ghosh", "name": "Jnan Ghosh Stadium & Sports Complex", "category": "sports", "x": 205, "z": 175, "w": 84, "d": 58, "h": 10 },
+    { "id": "bc_roy_hospital", "name": "Dr. B.C. Roy Technology Hospital", "category": "academic", "x": 85, "z": 278, "w": 52, "d": 36, "h": 12 },
+    { "id": "nehru_museum", "name": "Nehru Museum (Hijli Saheed Bhavan)", "category": "museum", "x": 220, "z": 285, "w": 60, "d": 42, "h": 16 },
+    { "id": "puri_gate", "name": "Main Puri Gate Approach", "category": "gate", "x": 0, "z": 360, "w": 30, "d": 12, "h": 10 }
+  ]
+}

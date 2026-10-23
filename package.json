@@ -1,0 +1,11 @@
+{
+  "name": "iit-kgp-open-world",
+  "version": "0.1.0",
+  "description": "Browser-based 3D open-world campus simulator set in IIT Kharagpur",
+  "type": "module",
+  "scripts": {
+    "start": "npx serve .",
+    "test": "node --test tests/logic.test.js"
+  },
+  "license": "MIT"
+}
